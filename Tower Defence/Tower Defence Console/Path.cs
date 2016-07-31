@@ -31,9 +31,9 @@ namespace Tower_Defence_Console
                 return _path[pathStep];
             }
 
-            else
+            else // Continue to return end step on path (score location)
             {
-                return null;
+                return _path[_path.Length-1];
             }
         }
 
