@@ -58,7 +58,7 @@ namespace Tower_Defence_Console
                 string inputX = Console.ReadLine();
 
                 Console.WriteLine();
-                Console.WriteLine("Enter the X coordinates of your tower: ");
+                Console.Write("Enter the Y coordinates of your tower: ");
                 string inputY = Console.ReadLine();
 
                 int x;
