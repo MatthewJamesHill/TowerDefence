@@ -10,8 +10,10 @@ namespace Tower_Defence_Console
     {
         static void Main(string[] args)
         {
+            // Generate map
             Map map = new Map(10, 10);
 
+            // Generate path for invaders to follow
             Path path = new Path(
                 new[] {
                 new MapLocation(0, 2, map),
@@ -24,33 +26,47 @@ namespace Tower_Defence_Console
                 new MapLocation(7, 2, map),
                 new MapLocation(8, 2, map),
                 new MapLocation(9, 2, map),
-                }
-            );
-
+                    }
+                );
+            
+            // Generate invaders for level
             Invader[] invaders =
             {
-                new Invader(path),
-                new Invader(path),
-                new Invader(path),
-                new Invader(path),
+            new Invader(path),
+            new Invader(path),
+            new Invader(path),
+            new Invader(path),
             };
 
-            Tower[] towers =
-            {
+            // Standard set of towers
+            /*
+                        Tower[] towers =
+                {
                 new Tower(new MapLocation(1, 3, map), map, path),
                 new Tower(new MapLocation(3, 3, map), map, path),
                 new Tower(new MapLocation(5, 3, map), map, path),
-            };
+                };
+            */
 
-            Level level1 = new Level(invaders)
+
+            // Allow user to place own towers
+            Tower[] towers =
             {
-                Towers = towers
+                Tower.GenerateNewTower(map, path),
+                Tower.GenerateNewTower(map, path),
+                Tower.GenerateNewTower(map, path),
             };
 
-            bool result = level1.Play();
+
+            Level Level = new Level(invaders, towers);
+
+            bool result = Level.Play();
 
             Console.WriteLine("You {0}!", result ? "win" : "lose");
             Console.ReadLine();
+
+
+
         }
     }
 }

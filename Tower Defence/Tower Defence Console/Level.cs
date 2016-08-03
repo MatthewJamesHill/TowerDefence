@@ -13,14 +13,15 @@ namespace Tower_Defence_Console
 
 
         // Constructor
-        public Level(Invader[] invaders)
+        public Level(Invader[] invaders, Tower[] Towers)
         {
             _invaders = invaders;
+            this.Towers = Towers;
         }
 
 
         // Properties
-        public Tower[] Towers { get; set; }
+        public Tower[] Towers { get; private set; }
         
 
         // Methods

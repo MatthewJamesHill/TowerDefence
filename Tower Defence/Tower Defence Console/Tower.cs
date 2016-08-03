@@ -49,5 +49,35 @@ namespace Tower_Defence_Console
                 }
             }
         }
+
+        public static Tower GenerateNewTower(Map map, Path path)
+        {
+            while (true)
+            {
+                Console.Write("Enter the X coordinates of your tower: ");
+                string inputX = Console.ReadLine();
+
+                Console.WriteLine();
+                Console.WriteLine("Enter the X coordinates of your tower: ");
+                string inputY = Console.ReadLine();
+
+                int x;
+                int y;
+
+                try
+                {
+                    x = Convert.ToInt32(inputX);
+                    y = Convert.ToInt32(inputY);
+                }
+                catch (Exception)
+                {
+
+                    Console.WriteLine("Invalid input!");
+                    continue;
+                }
+
+                return new Tower(new MapLocation(x, y, map), map, path);
+            }
+        }
     }
 }
