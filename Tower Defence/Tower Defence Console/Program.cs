@@ -38,35 +38,9 @@ namespace Tower_Defence_Console
             new Invader(path),
             };
 
-            // Standard set of towers
-            /*
-                        Tower[] towers =
-                {
-                new Tower(new MapLocation(1, 3, map), map, path),
-                new Tower(new MapLocation(3, 3, map), map, path),
-                new Tower(new MapLocation(5, 3, map), map, path),
-                };
-            */
-            Console.WriteLine();
-            Console.WriteLine("Tower Defence Game!");
-            Console.WriteLine();
-            Console.WriteLine("  . _ . _ . _ . _ . _ . _ . _ . _ . _ . _ .");
-            Console.WriteLine("9 | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ |");
-            Console.WriteLine("8 | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ |");
-            Console.WriteLine("7 | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ |");
-            Console.WriteLine("6 | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ |");
-            Console.WriteLine("5 | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ |");
-            Console.WriteLine("4 | I | P | P | P | P | P | P | P | P | B |");
-            Console.WriteLine("3 | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ |");
-            Console.WriteLine("2 | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ |");
-            Console.WriteLine("1 | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ |");
-            Console.WriteLine("0 | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ |");
-            Console.WriteLine("    0   1   2   3   4   5   6   7   8   9");
-            Console.WriteLine();
-            Console.WriteLine("I: Invader start position.");
-            Console.WriteLine("P: The path the invaders will take.");
-            Console.WriteLine("B: Your base, protect it.");
-            Console.WriteLine();
+            
+            map.DrawMap(path);
+
 
             // Allow user to place own towers
             Tower[] towers =

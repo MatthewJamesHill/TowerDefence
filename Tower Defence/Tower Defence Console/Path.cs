@@ -9,7 +9,7 @@ namespace Tower_Defence_Console
     class Path
     {
         // Fields
-        private readonly MapLocation[] _path;
+        public readonly MapLocation[] _path;
 
 
         // Constructor
