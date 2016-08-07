@@ -30,6 +30,7 @@ namespace Tower_Defence_Console
 
         public void DrawMap(Path path, Tower[] towers)
         {
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine("    Tower Defence Game!");
             Console.WriteLine();
