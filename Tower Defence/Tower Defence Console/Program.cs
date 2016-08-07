@@ -38,17 +38,20 @@ namespace Tower_Defence_Console
             new Invader(path),
             };
 
-            
-            map.DrawMap(path);
+
+            Tower[] towers = new Tower[3];
+            map.DrawMap(path, towers);
 
 
             // Allow user to place own towers
-            Tower[] towers =
-            {
-                Tower.GenerateNewTower(map, path),
-                Tower.GenerateNewTower(map, path),
-                Tower.GenerateNewTower(map, path),
-            };
+            towers[0] = Tower.GenerateNewTower(map, path);
+            map.DrawMap(path, towers);
+
+            towers[1] = Tower.GenerateNewTower(map, path);
+            map.DrawMap(path, towers);
+
+            towers[2] = Tower.GenerateNewTower(map, path);
+            map.DrawMap(path, towers);
 
 
             Level Level = new Level(invaders, towers);

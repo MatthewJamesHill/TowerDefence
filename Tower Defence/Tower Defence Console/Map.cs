@@ -8,7 +8,7 @@ namespace Tower_Defence_Console
 {
     class Map
     {
-        //Fields
+        // Fields
         public readonly int Width;
         public readonly int Height;
 
@@ -28,7 +28,7 @@ namespace Tower_Defence_Console
                    point.Y >= 0 && point.Y < Height;
         }
 
-        public void DrawMap(Path path)
+        public void DrawMap(Path path, Tower[] towers)
         {
             Console.WriteLine();
             Console.WriteLine("    Tower Defence Game!");
@@ -54,15 +54,15 @@ namespace Tower_Defence_Console
                         Console.Write("| I ");
                     }
 
-                    else if (h >= path._path[0].Y &&
-                             h <= path._path[path.Length - 1].Y &&
-                             w > path._path[0].X &&
-                             w < path._path[path.Length - 1].X)
+                    else if (CheckOverlap(path, h, w))
                     {
-                        Console.Write("| P ");  // Currently only draws in straight line!
+                        Console.Write("| P ");
                     }
 
-                    // else if towers
+                    else if (CheckOverlap(towers, h, w))
+                    {
+                        Console.Write("| T ");
+                    }
 
                     else
                     {
@@ -76,6 +76,34 @@ namespace Tower_Defence_Console
             Console.WriteLine("        0   1   2   3   4   5   6   7   8   9");
             Console.WriteLine();
             Console.WriteLine();
+        }
+
+        internal static bool CheckOverlap(Path path, int h, int w)
+        {
+            for (int i = 0; i < path.Length; i++)
+            {
+                if (path._path[i].X == w && path._path[i].Y == h) { return true; }
+            }
+
+            return false;
+        }
+
+        internal static bool CheckOverlap(Tower[] towers, int h, int w)
+        {
+            int counter = 0;
+
+            // Check how many towers exist
+            for (int i = 0; i < towers.Length; i++)
+            {
+                if (towers[i] != null) { counter++; }
+            }
+
+            for (int i = 0; i < counter; i++)
+            {
+                if (towers[i]._location.X == w && towers[i]._location.Y == h) { return true; }
+            }
+
+            return false;
         }
     }
 }

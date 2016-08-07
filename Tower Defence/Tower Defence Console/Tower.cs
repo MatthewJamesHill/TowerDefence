@@ -11,7 +11,7 @@ namespace Tower_Defence_Console
         // Fields
         private static readonly Random _random = new Random();
 
-        private readonly MapLocation _location;
+        public readonly MapLocation _location;
 
         private const int _range = 1;
         private const int _strength = 1;
