@@ -10,10 +10,11 @@ namespace Tower_Defence_Console
     {
         static void Main(string[] args)
         {
-            // Generate map
+            // Instantiate new 10 x 10 map
             Map map = new Map(10, 10);
 
-            // Generate path for invaders to follow
+
+            // Instantiate path for invaders to follow
             Path path = new Path(
                 new[] {
                 new MapLocation(0, 4, map),
@@ -29,7 +30,8 @@ namespace Tower_Defence_Console
                     }
                 );
             
-            // Generate invaders for level
+
+            // Create new array of invaders for level
             Invader[] invaders =
             {
             new Invader(path),
@@ -39,6 +41,7 @@ namespace Tower_Defence_Console
             };
 
 
+            // Tower array to add towers to
             Tower[] towers = new Tower[3];
             map.DrawMap(path, towers);
 
@@ -54,15 +57,17 @@ namespace Tower_Defence_Console
             map.DrawMap(path, towers);
 
 
+            // Instantiate level based on preceeding data
             Level Level = new Level(invaders, towers);
 
+
+            // Check if player or invaders win
             bool result = Level.Play();
 
+
+            // Inform player of result
             Console.WriteLine("You {0}!", result ? "win" : "lose");
             Console.ReadLine();
-
-
-
         }
     }
 }
