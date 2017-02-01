@@ -10,11 +10,8 @@ namespace Tower_Defence_Console
     {
         static void Main(string[] args)
         {
-            // Instantiate new 10 x 10 map
             Map map = new Map(10, 10);
 
-
-            // Instantiate path for invaders to follow
             Path path = new Path(
                 new[] {
                 new MapLocation(0, 4, map),
@@ -30,8 +27,6 @@ namespace Tower_Defence_Console
                     }
                 );
             
-
-            // Create new array of invaders for level
             Invader[] invaders =
             {
             new Invader(path),
@@ -40,8 +35,6 @@ namespace Tower_Defence_Console
             new Invader(path),
             };
 
-
-            // Tower array to add towers to
             Tower[] towers = new Tower[3];
             map.DrawMap(path, towers);
 
