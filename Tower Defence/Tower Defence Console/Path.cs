@@ -8,14 +8,22 @@ namespace Tower_Defence_Console
 {
     class Path
     {
-        public readonly MapLocation[] path;
+        private readonly MapLocation[] path;
+
 
         public Path(MapLocation[] path)
         {
             this.path = path;
         }
 
+
         public int Length => path.Length;
+
+
+        public bool IsOnPath(MapLocation location)
+        {
+            return path.Contains(location);
+        }
 
         public MapLocation GetLocationAt(int pathStep)
         {
@@ -23,17 +31,10 @@ namespace Tower_Defence_Console
             {
                 return path[pathStep];
             }
-
-            // Continue to return base location
             else
             {
-                return path[path.Length-1];
+                return path[path.Length - 1];
             }
-        }
-
-        public bool OnPath(MapLocation location)
-        {
-            return path.Contains(location);
         }
     }
 }
