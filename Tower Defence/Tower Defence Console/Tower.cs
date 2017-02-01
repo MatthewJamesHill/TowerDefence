@@ -18,7 +18,7 @@ namespace Tower_Defence_Console
 
         public Tower(MapLocation location, Map map, Path path)
         {
-            if (!map.OnMap(location) || path.OnPath(location))
+            if (!map.OnMap(location) || path.IsOnPath(location))
             {
                 throw new Exception("Location not on map or is on path.");
             }
