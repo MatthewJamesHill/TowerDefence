@@ -10,89 +10,38 @@ namespace Tower_Defence_Console
     {
         private readonly int height;
         private readonly int width;
-        private readonly Path path;
 
 
-        public Map(int width, int height, Path path)
+        public Map(int width, int height)
         {
             this.height = height;
             this.width = width;
-            this.path = path;
         }
 
         public bool OnMap(Point point)
         {
-            return point.x >= 0 && point.x < width &&
-                   point.y >= 0 && point.y < height;
+            return point.x >= 0 &&
+                   point.x < width &&
+                   point.y >= 0 &&
+                   point.y < height;
         }
-
-        public void DrawMap(Path path, Tower[] towers)
-        {
-            Console.Clear();
-            Console.WriteLine();
-            Console.WriteLine("    Tower Defence Game!");
-            Console.WriteLine();
-
-            Console.WriteLine("      . _ . _ . _ . _ . _ . _ . _ . _ . _ . _ .");
-
-            for (int h = height - 1; h >= 0; h--)
-            {
-                Console.Write("    " + h + " ");
-
-                for (int w = 0; w < width; w++)
-                {
-                    // Check for base location at end of path
-                    if (h == path.path[path.Length - 1].Y &&
-                        w == path.path[path.Length - 1].X)
-                    {
-                        Console.Write("| B ");
-                    }
-
-                    // Check for invader location (currently always start of path)
-                    else if (h == path.path[0].Y &&
-                             w == path.path[0].X)
-                    {
-                        Console.Write("| I ");
-                    }
-
-                    // Check if path space
-                    else if (IsOccupied(path, h, w))
-                    {
-                        Console.Write("| P ");
-                    }
-
-                    // check if tower space
-                    else if (IsOccupied(towers, h, w))
-                    {
-                        Console.Write("| T ");
-                    }
-
-                    else
-                    {
-                        Console.Write("| _ ");
-                    }
-                }
-
-                Console.WriteLine("|");
-            }
-
-            Console.WriteLine("        0   1   2   3   4   5   6   7   8   9");
-            Console.WriteLine();
-            Console.WriteLine();
-        }
-
-
-        internal static bool IsOccupied(Path path, int h, int w)
+        
+        //TODO place this check in path class
+        internal static bool IsPathSpace(Path path, int h, int w)
         {
             for (int i = 0; i < path.Length; i++)
             {
-                if (path.path[i].X == w && path.path[i].Y == h) { return true; }
+                if (path.GetLocationAt(i).x == w && path.GetLocationAt(i).y == h)
+                {
+                    return true;
+                }
             }
 
             return false;
         }
 
-        internal static bool IsOccupied(Tower[] towers, int h, int w)
+        //TODO place this check in new tower locations class
+        internal static bool IsTowerSpace(Tower[] towers, int h, int w)
         {
             int counter = 0;
 
@@ -109,6 +58,70 @@ namespace Tower_Defence_Console
             }
 
             return false;
+        }
+
+        public void DrawMap(Path path, Tower[] towers)
+        {
+            Console.Clear();
+            DrawHeader();
+            DrawMapSpaces(path, towers);
+            DrawFooter();
+        }
+
+        private void DrawHeader()
+        {
+            Console.WriteLine();
+            Console.WriteLine("    Tower Defence Game!");
+            Console.WriteLine();
+            Console.WriteLine("      . _ . _ . _ . _ . _ . _ . _ . _ . _ . _ .");
+        }
+
+        private void DrawFooter()
+        {
+            Console.WriteLine("        0   1   2   3   4   5   6   7   8   9");
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
+        private void DrawMapSpaces(Path path, Tower[] towers)
+        {
+            for (int h = height - 1; h >= 0; h--)
+            {
+                Console.Write("    " + h + " ");
+
+                for (int w = 0; w < width; w++)
+                {
+                    // Check for base location at end of path
+                    if (h == path.GetBaseLocation().y &&
+                        w == path.GetBaseLocation().x)
+                    {
+                        Console.Write("| B ");
+                    }
+
+                    // Check for invader location (currently always start of path)
+                    else if (h == path.GetLocationAt(0).y &&
+                             w == path.GetLocationAt(0).x)
+                    {
+                        Console.Write("| I ");
+                    }
+
+                    else if (IsPathSpace(path, h, w))
+                    {
+                        Console.Write("| P ");
+                    }
+
+                    else if (IsTowerSpace(towers, h, w))
+                    {
+                        Console.Write("| T ");
+                    }
+
+                    else
+                    {
+                        Console.Write("| _ ");
+                    }
+                }
+                Console.WriteLine("|");
+            }
         }
     }
 }
