@@ -33,8 +33,13 @@ namespace Tower_Defence_Console
             }
             else
             {
-                return path[path.Length - 1];
+                return GetBaseLocation();
             }
+        }
+
+        public MapLocation GetBaseLocation()
+        {
+            return path[path.Length - 1];
         }
     }
 }
