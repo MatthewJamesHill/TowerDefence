@@ -8,19 +8,22 @@ namespace Tower_Defence_Console
 {
     class Map
     {
-        public readonly int Width;
-        public readonly int Height;
+        private readonly int height;
+        private readonly int width;
+        private readonly Path path;
 
-        public Map(int width, int height)
+
+        public Map(int width, int height, Path path)
         {
-            Width = width;
-            Height = height;
+            this.height = height;
+            this.width = width;
+            this.path = path;
         }
 
         public bool OnMap(Point point)
         {
-            return point.X >= 0 && point.X < Width &&
-                   point.Y >= 0 && point.Y < Height;
+            return point.x >= 0 && point.x < width &&
+                   point.y >= 0 && point.y < height;
         }
 
         public void DrawMap(Path path, Tower[] towers)
@@ -32,11 +35,11 @@ namespace Tower_Defence_Console
 
             Console.WriteLine("      . _ . _ . _ . _ . _ . _ . _ . _ . _ . _ .");
 
-            for (int h = Height - 1; h >= 0; h--)
+            for (int h = height - 1; h >= 0; h--)
             {
                 Console.Write("    " + h + " ");
 
-                for (int w = 0; w < Width; w++)
+                for (int w = 0; w < width; w++)
                 {
                     // Check for base location at end of path
                     if (h == path.path[path.Length - 1].Y &&
@@ -78,6 +81,7 @@ namespace Tower_Defence_Console
             Console.WriteLine();
         }
 
+
         internal static bool IsOccupied(Path path, int h, int w)
         {
             for (int i = 0; i < path.Length; i++)
@@ -101,7 +105,7 @@ namespace Tower_Defence_Console
             // Loops through all *existing* towers
             for (int i = 0; i < counter; i++)
             {
-                if (towers[i]._location.X == w && towers[i]._location.Y == h) { return true; }
+                if (towers[i]._location.x == w && towers[i]._location.y == h) { return true; }
             }
 
             return false;
