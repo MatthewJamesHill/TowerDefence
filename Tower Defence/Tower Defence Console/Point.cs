@@ -8,25 +8,30 @@ namespace Tower_Defence_Console
 {
     class Point
     {
-        public readonly int X;
-        public readonly int Y;
+        public readonly int x;
+        public readonly int y;
+
 
         public Point(int x, int y)
         {
-            X = x;
-            Y = y;
+            this.x = x;
+            this.y = y;
+        }
+
+
+        public int DistanceTo(Point point)
+        {
+            return DistanceTo(point.x, point.y);
         }
 
         public int DistanceTo(int x, int y)
         {
-            double xDiffSquared = Math.Pow(X - x, 2);
-            double yDiffSquared = Math.Pow(Y - y, 2);
-            return (int)Math.Sqrt(xDiffSquared + yDiffSquared);
-        }
-
-        public int DistanceTo(Point point)
-        {
-            return DistanceTo(point.X, point.Y);
+            double xDifference = this.x - x;
+            double yDifference = this.y - y;
+            double xDifferenceSquared = xDifference * xDifference;
+            double yDifferenceSquared = yDifference * yDifference;
+            double result = Math.Sqrt(xDifferenceSquared + yDifferenceSquared);
+            return (int)result;
         }
     }
 }
