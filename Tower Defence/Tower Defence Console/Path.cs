@@ -25,6 +25,19 @@ namespace Tower_Defence_Console
             return path.Contains(location);
         }
 
+        public bool IsOnPath(int x, int y)
+        {
+            foreach (MapLocation pathLocation in path)
+            {
+                if (pathLocation.x == x &&
+                    pathLocation.y == y)
+                {
+                    return true;
+                }               
+            }
+            return false;
+        }
+
         public MapLocation GetLocationAt(int pathStep)
         {
             if (pathStep < Length)

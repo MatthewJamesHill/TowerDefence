@@ -26,20 +26,6 @@ namespace Tower_Defence_Console
                    point.y < height;
         }
         
-        //TODO place this check in path class
-        internal static bool IsPathSpace(Path path, int h, int w)
-        {
-            for (int i = 0; i < path.Length; i++)
-            {
-                if (path.GetLocationAt(i).x == w && path.GetLocationAt(i).y == h)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         //TODO place this check in new tower locations class
         internal static bool IsTowerSpace(Tower[] towers, int h, int w)
         {
@@ -105,7 +91,7 @@ namespace Tower_Defence_Console
                         Console.Write("| I ");
                     }
 
-                    else if (IsPathSpace(path, h, w))
+                    else if (path.IsOnPath(w, h))
                     {
                         Console.Write("| P ");
                     }
