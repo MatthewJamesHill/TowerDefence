@@ -40,13 +40,13 @@ namespace Tower_Defence_Console
 
 
             // Allow user to place own towers
-            towers[0] = Tower.GenerateNewTower(map, path);
+            towers[0] = TowerFactory.GenerateNewTower(map, path);
             map.DrawMap(path, towers);
 
-            towers[1] = Tower.GenerateNewTower(map, path);
+            towers[1] = TowerFactory.GenerateNewTower(map, path);
             map.DrawMap(path, towers);
 
-            towers[2] = Tower.GenerateNewTower(map, path);
+            towers[2] = TowerFactory.GenerateNewTower(map, path);
             map.DrawMap(path, towers);
 
 

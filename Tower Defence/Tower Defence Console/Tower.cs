@@ -8,25 +8,19 @@ namespace Tower_Defence_Console
 {
     class Tower
     {
-        private static readonly Random _random = new Random();
-
         public readonly MapLocation _location;
 
         private const int _range = 1;
         private const int _strength = 1;
         private const double _accuracy = .75;
+        private static readonly Random _random = new Random();
 
-        public Tower(MapLocation location, Map map, Path path)
+
+        public Tower(MapLocation Location)
         {
-            if (!map.OnMap(location) || path.IsOnPath(location))
-            {
-                throw new Exception("Location not on map or is on path.");
-            }
-            else
-            {
-                _location = location;
-            }
+            _location = Location;
         }
+
 
         private bool SuccessfulShot() => _accuracy <= _random.Next();
 
@@ -42,38 +36,6 @@ namespace Tower_Defence_Console
                     }
                     break;
                 }
-            }
-        }
-
-        public static Tower GenerateNewTower(Map map, Path path)
-        {
-            while (true)
-            {
-                Console.Write("Enter the X coordinates of your tower: ");
-                string inputX = Console.ReadLine();
-
-                Console.WriteLine();
-                Console.Write("Enter the Y coordinates of your tower: ");
-                string inputY = Console.ReadLine();
-
-                int x;
-                int y;
-
-                try
-                {
-                    x = Convert.ToInt32(inputX);
-                    y = Convert.ToInt32(inputY);
-                }
-
-                // Currently only catches bad input, not conflicting locations
-                catch (Exception)
-                {
-
-                    Console.WriteLine("Invalid input!");
-                    continue;
-                }
-
-                return new Tower(new MapLocation(x, y, map), map, path);
             }
         }
     }
