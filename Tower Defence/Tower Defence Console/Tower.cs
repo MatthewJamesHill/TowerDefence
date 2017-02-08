@@ -26,7 +26,7 @@ namespace Tower_Defence_Console
         {
             foreach (Invader invader in invaders)
             {
-                if (invader.IsActive && invader.Location.IsInRange(TowerLocation, WeaponRange))
+                if (invader.IsActive && invader.CurrentLocation.IsInRange(TowerLocation, WeaponRange))
                 {
                     AttemptShot(invader);
                     break;

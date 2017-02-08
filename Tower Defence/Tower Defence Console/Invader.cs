@@ -8,26 +8,34 @@ namespace Tower_Defence_Console
 {
     class Invader
     {
-        private readonly Path _path;
-        private int _pathStep = 0;
+        private readonly Path Path;
+        private int PathStep = 0;
+        private int HitPoints = 2;
 
-        public Invader(Path path)
+
+        public Invader(Path Path)
         {
-            _path = path;
+            this.Path = Path;
         }
+                
 
-        public int HitPoints { get; private set; } = 2;
+        public MapLocation CurrentLocation => Path.GetLocationAt(PathStep);
 
-        public MapLocation Location => _path.GetLocationAt(_pathStep);
-
-        public bool HasScored => _pathStep >= _path.Length && !IsDestroyed;
+        public bool HasScored => PathStep >= Path.Length && !IsDestroyed;
 
         public bool IsDestroyed => HitPoints <= 0;
 
         public bool IsActive => !(HasScored || IsDestroyed);
 
-        public void Move() => _pathStep++;
 
-        public void TakeDamage(int damage) => HitPoints -= damage;
+        public void Move()
+        {
+            PathStep++;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            HitPoints -= damage;
+        }
     }
 }
