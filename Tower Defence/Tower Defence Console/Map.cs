@@ -73,20 +73,16 @@ namespace Tower_Defence_Console
         {
             for (int h = height - 1; h >= 0; h--)
             {
-                Console.Write("    " + h + " ");
+                Console.Write($"    {h} ");
 
                 for (int w = 0; w < width; w++)
                 {
-                    // Check for base location at end of path
-                    if (h == path.GetBaseLocation().y &&
-                        w == path.GetBaseLocation().x)
+                    if (path.IsBaseLocation(w, h))
                     {
                         Console.Write("| B ");
                     }
 
-                    // Check for invader location (currently always start of path)
-                    else if (h == path.GetLocationAt(0).y &&
-                             w == path.GetLocationAt(0).x)
+                    else if (path.IsInvaderStartLocation(w, h))
                     {
                         Console.Write("| I ");
                     }
