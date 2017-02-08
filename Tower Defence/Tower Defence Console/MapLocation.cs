@@ -17,7 +17,7 @@ namespace Tower_Defence_Console
             }
         }
 
-        public bool InRange(MapLocation location, int range)
+        public bool IsInRange(MapLocation location, int range)
         {
             return range >= DistanceTo(location);
         }

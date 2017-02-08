@@ -40,7 +40,7 @@ namespace Tower_Defence_Console
             // Loops through all *existing* towers
             for (int i = 0; i < counter; i++)
             {
-                if (towers[i]._location.x == w && towers[i]._location.y == h) { return true; }
+                if (towers[i].TowerLocation.x == w && towers[i].TowerLocation.y == h) { return true; }
             }
 
             return false;

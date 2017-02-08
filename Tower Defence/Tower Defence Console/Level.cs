@@ -27,7 +27,7 @@ namespace Tower_Defence_Console
                 // Towers get to attack invaders
                 foreach (Tower tower in Towers)
                 {
-                    tower.DamageInvaders(_invaders);
+                    tower.ShootAtInvaders(_invaders);
                 }
 
                 remainingInvaders = 0;

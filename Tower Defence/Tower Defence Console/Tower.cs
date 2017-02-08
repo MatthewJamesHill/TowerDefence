@@ -8,35 +8,38 @@ namespace Tower_Defence_Console
 {
     class Tower
     {
-        public readonly MapLocation _location;
+        public readonly MapLocation TowerLocation;
 
-        private const int _range = 1;
-        private const int _strength = 1;
-        private const double _accuracy = .75;
-        private static readonly Random _random = new Random();
+        private const int WeaponRange = 1;
+        private const int WeaponStrength = 1;
+        private const double WeaponAccuracy = .75;
+        private static readonly Random WeaponMissChance = new Random();
 
 
         public Tower(MapLocation Location)
         {
-            _location = Location;
+            TowerLocation = Location;
         }
 
 
-        private bool SuccessfulShot() => _accuracy <= _random.Next();
-
-        public void DamageInvaders(Invader[] invaders)
+        public void ShootAtInvaders(Invader[] invaders)
         {
             foreach (Invader invader in invaders)
             {
-                if (invader.IsActive && !invader.HasScored && _location.InRange(invader.Location, _range))
+                if (invader.IsActive && invader.Location.IsInRange(TowerLocation, WeaponRange))
                 {
-                    if (SuccessfulShot())
-                    {
-                        invader.TakeDamage(_strength);
-                    }
+                    AttemptShot(invader);
                     break;
                 }
             }
         }
+
+        private void AttemptShot(Invader invader)
+        {
+            if (WeaponAccuracy <= WeaponMissChance.Next())
+            {
+                invader.TakeDamage(WeaponStrength);
+            }
+        }        
     }
 }
